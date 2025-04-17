@@ -1,0 +1,211 @@
+ {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+       
+        .form-container {
+            margin-top: 50px;
+            margin-bottom: 30px;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+       
+        .form-control {
+            border-radius: 10px !important;
+            padding: 12px;
+            font-size: 16px;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+            border-color: #53cbee;
+        }
+
+       
+        .btn-submit {
+            background-color: #53cbee;
+            color: white;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            background-color: #1e98c6;
+            cursor: pointer;
+        }
+
+       
+        .form-control-file {
+            padding: 10px;
+        }
+        
+       
+        .form-header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #53cbee;
+            padding-bottom: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 8px;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+        
+        .form-col {
+            flex: 0 0 50%;
+            max-width: 50%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+        
+        .preview-container {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .preview-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .file-label {
+            display: inline-block;
+            background-color: #f1f1f1;
+            color: #555;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px dashed #ccc;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .file-label:hover {
+            background-color: #e9e9e9;
+        }
+        
+        .file-input {
+            opacity: 0;
+            position: absolute;
+            z-index: -1;
+        }
+        
+        @media (max-width: 768px) {
+            .form-col {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h2 class="text-center">Update Product</h2>
+            </div>
+            
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="id_name">Product Name</label>
+                            {{ form.name}}
+                        </div>
+                    </div>
+                    
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="id_price">Price ($)</label>
+                            {{ form.price }}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_category">Category</label>
+                    {{ form.category }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_description">Description</label>
+                    {{ form.description }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_image">Product Image</label>
+                    <div class="custom-file">
+                        <input type="file" class="file-input" id="id_image" name="image">
+                        <label class="file-label" for="id_image">
+                            <i class="fas fa-cloud-upload-alt"></i> Choose Image
+                        </label>
+                    </div>
+                    
+                    {% if product.image %}
+                    <div class="preview-container">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" class="preview-image">
+                        <span>Current image: {{ product.image.name }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+                
+                <button type="submit" class="btn-submit">
+                    <i class="fas fa-save"></i> Update Product
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.querySelector('.file-input');
+            const fileLabel = document.querySelector('.file-label');
+            
+            if (fileInput && fileLabel) {
+                fileInput.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        fileLabel.innerHTML = '<i class="fas fa-check"></i> ' + this.files[0].name;
+                    } else {
+                        fileLabel.innerHTML = '<i class="fas fa-cloud-upload-alt"></i> Choose Image';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

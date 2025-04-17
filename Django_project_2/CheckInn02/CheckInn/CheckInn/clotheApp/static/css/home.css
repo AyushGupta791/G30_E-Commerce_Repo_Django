@@ -1,0 +1,704 @@
+
+    body{
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    .body_dark {
+        background: linear-gradient(90deg, rgb(1, 0, 34), rgb(64, 17, 56), rgb(29, 37, 58), rgb(4, 37, 35));
+        background-size: 400%;
+        animation: q1 20s ease-in-out infinite;
+        color: rgb(49, 49, 49);
+    }
+    .body_light{
+        background-color: #52fdb9;
+        color: #0a8f74;
+    
+    }
+    .body_cart_light{
+        background-color: #2e2e2e;
+    }
+    .body_cart_dark {
+        background: linear-gradient(90deg, rgb(1, 0, 34), rgb(64, 17, 56), rgb(29, 37, 58), rgb(4, 37, 35));
+        background-size: 400%;
+        animation: q1 20s ease-in-out infinite;
+        color: rgb(49, 49, 49);
+    }
+    .bgl_txt{
+        position: absolute;
+        font-family: Agency FB;
+        animation: q2 7s ease-in-out infinite;
+        z-index: -99;
+    }
+    
+    .bgtxt1{
+        font-size: 14rem;
+        font-weight: 700;
+        margin-left: 70px;
+        display: inline-block;
+    }
+    .bgtxt2{
+        font-size: 14rem;
+        font-weight: 700;
+        display: inline-block;
+        transform: translate(70px,-90px);
+        animation: q2_2 7s ease-in-out infinite;
+    }
+    #theme-toggle {
+        margin-left: 20px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: #04382e;
+        font-size: 1.5rem;
+        padding: 5px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        transform: translate(0px,-9px);
+    }
+    
+    #theme-toggle:hover {
+        background-color: rgba(10, 143, 116, 0.1);
+        transform: rotate(180deg);
+    }
+    
+    @keyframes q1{
+        0%{
+            background-position: 0% 0%;
+        }
+        50%{
+            background-position: 100% 100%;
+        }
+        100%{
+            background-position: 0% 0%;
+        }
+    }
+    @keyframes q2{
+        0%{
+            transform: translate(0px,0px);
+        }
+        50%{
+            transform: translate(0px,20px);
+        }
+        100%{
+            transform: translate(0px,0px);
+        }
+    }
+    @keyframes q2_alt{
+        0%{
+            transform: translate(0px,20px);
+        }
+        50%{
+            transform: translate(0px,0px);
+        }
+        100%{
+            transform: translate(0px,20px);
+        }
+    }
+    @keyframes q2_2{
+        0%{
+            transform: translate(70px,-90px);
+        }
+        50%{
+            transform: translate(90px,-90px);
+        }
+        100%{
+            transform: translate(70px,-90px);
+        }
+    }
+    #logo img{
+        position: absolute;
+        left: -691px;
+        top: -160px;
+        transform: scale(0.1);
+    }
+    #prof{
+        width: fit-content;
+        display: flex;
+        gap: 20px;
+        margin-left: auto;
+        padding-right: 20px;
+        margin-top: 20px;
+    }
+    .cart{
+        color: rgb(5, 5, 57);
+    }
+    .cart:hover{
+        color: rgb(0, 43, 21);
+        scale: 1.24;
+        box-shadow: rgba(255, 255, 255, 0.70) 0px 48px 100px 0px;
+        transition: 340ms;
+    }
+    .profile{
+        color: rgb(5, 5, 57);
+    }
+    .profile:hover{
+        color: rgb(0, 57, 27);
+        scale: 1.24;
+        box-shadow: rgba(255, 255, 255, 0.70) 0px 48px 100px 0px;
+        transition: 340ms;
+    }
+    #main{
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+    }
+    #choose{
+        width: 450px;
+        height: 500px;
+        margin-top: auto;
+        background-color: rgba(245, 245, 245, 0.932);
+        border-radius: 0px 0px 20px 20px;
+        color: black;
+        font-family: Agency Fb;
+        font-weight: 900;
+    }
+    #display{
+        width: 590px;
+        height: 655px;
+        background-color: rgba(35, 35, 35, 0.7);
+        border-radius: 20px;
+        z-index: -1;
+    }
+    #current{
+        width: 250px;
+        height: 450px;
+        margin-top: auto;
+    }
+    #top{
+        background-color: rgba(255, 255, 255, 0.396);
+        height: 45px;
+        display: flex;
+        align-content: center;
+    }
+    #price_range {
+        padding: 20px 10px;
+        margin-top: 20px;
+    }
+    
+    #price_range input[type="range"] {
+        width: 100%;
+        height: 10px;
+        -webkit-appearance: none;
+        background: #ddd;
+        border-radius: 5px;
+        margin-top: 10px;
+        outline: none;
+    }
+    
+    #price_range input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #0a8f74;
+        cursor: pointer;
+    }
+    
+    #price_range .price-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+    
+    #price_range .price-value {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #0a8f74;
+        text-align: center;
+        margin-top: 15px;
+    }
+    
+    .mascot_main, .mascot_think{
+        position: absolute;
+        transform: translate(0px,-70px);
+        scale: 0.83;
+    }
+    .mascot_think{
+        opacity: 0;
+        pointer-events: none;
+    }
+    .mascot_think:hover{
+        transform: translate(0px,-110px);
+        transition: 250ms ease-in-out;
+    }
+    .mascot_main:hover{
+        transform: translate(0px,-110px);
+        transition: 250ms ease-in-out;
+    }
+    .choose_l{
+        position: absolute;
+        font-family: Agency Fb;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 20px 20px 0px 0px;
+        padding: 7px;
+        padding-right: 245px;
+        border-bottom: #0a8f74 2.5px solid;
+        font-weight: 900;
+        font-size: 2rem;
+        color: #04382e;
+        transform: translate(0px,100px);
+    }
+    #pants_img{
+        height: 50px;
+        width: 50px;
+    }
+    #shoes_img{
+        width: 34px;
+        height: 25px;
+    }
+    .s1,.s2{
+        background-color: #ffffff;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+        width: 147px;
+        height: 147px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 2px;
+    }
+    #style1,#style2{
+        display: flex;
+        gap: 2px;
+        margin-bottom: 2px;
+    }
+    .s2_2{
+        background-color: rgb(27, 27, 27);
+        width: 295px;
+        box-shadow: none;
+    }
+    .s2_2 button{
+        font-family: Agency Fb;
+        font-weight: 900;
+        height: 100%;
+        width: 100%;
+        font-size: 5rem;
+        color: #55fcb9;
+        background-color: rgb(22, 22, 22);
+    }
+    .s2_2 button:hover{
+        color: rgb(22, 22, 22);
+        background-color: #55fcb9;
+        transform: scale(1.06);
+        transition: 340ms;
+    }
+    .shirt_img,.glasses_img,#pants_img,#shoes_img{
+        scale: 1.5;
+    }
+    .stxt{
+        font-size: 1.4rem;
+    }
+    .s1:hover, .s2_1:hover{
+        background-color: rgb(34, 34, 34);
+        color: #52fdb9;
+        transform: translateY(-14px);
+        transition: 340ms;
+    }
+    .stxt1,.stxt4{
+        transform: translate(0px,40px);
+    }
+    .stxt2{
+        transform: translate(0px,16px);
+    }
+    .stxt3{
+        transform: translate(0px,29px);
+    }
+    #shoes_hover_img{
+        position: absolute;
+        width: 52px;
+        height: 43px;
+        transform: translate(0px,-25px);
+        opacity: 0;
+    }
+    #pants_hover_img{
+        position: absolute;
+        width: 74px;
+        height: 79px;
+        transform: translate(0px,-25px);
+        opacity: 0;
+    }
+    .s1_2:hover #pants_img{
+        opacity: 0;
+    }
+    .s1_2:hover #pants_hover_img{
+        opacity: 1;
+        transition: 340ms;
+    }
+    .s1_3:hover #shoes_img{
+        opacity: 0;
+    }
+    .s1_3:hover #shoes_hover_img{
+        opacity: 1;
+        transition: 340ms;
+    }
+    .mascot_gif{
+        position: absolute;
+        transform: translate(0px,-120px);
+        scale: 0.9;
+        scale: 1.6;
+        opacity: 0;
+        filter: blur(1px);
+        pointer-events: none;
+    }
+    .mascot_gif_active{
+        opacity: 1;
+        transition: 340ms;
+        pointer-events: none;
+    }
+    #price_txt{
+        font-size: 2rem;
+    }
+    #display_bg, #display_light{
+        position: absolute;
+    }
+    #display_light{
+        transform: translate(0px,-160px);
+        pointer-events: none;
+    }
+    .display_light_on{
+        animation: light1 340ms ease-in-out forwards;
+    }
+    #display_bg{
+        opacity: 0;
+        z-index: -1;
+        position: none;
+    }
+    .display_bg_on{
+        animation: light2 2s ease-in-out forwards;
+    }
+    @keyframes light1{
+        0%{
+            transform: translate(0px,-140px);
+        }
+        100%{
+            transform: translate(0px,-70px);
+        }
+    }
+    @keyframes light2{
+        0%{
+            opacity: 0;
+        }
+        8%{
+            opacity: 0;
+        }
+        10%{
+            opacity: 1;
+        }
+        18%{
+            opacity: 1;
+        }
+        20%{
+            opacity: 0;
+        }
+        25%{
+            opacity: 0;
+        }
+        30%{
+            opacity: 1;
+        }
+        37%{
+            opacity: 1;
+        }
+        40%{
+            opacity: 0;
+        }
+        50%{
+            opacity: 1;
+        }
+        61%{
+            opacity: 1;
+        }
+        70%{
+            opacity: 0;
+        }
+        90%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+    #display{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .cap_img,.shoes_img{
+        width: 200px;
+        height: 200px;
+        opacity: 0;
+    }
+    .upper_img, .pants_img{
+        width: 200px;
+        height: 200px;
+        opacity: 0;
+    }
+    .d_asc,.d_pants{
+        animation: q2 5s ease-in-out infinite;
+    }
+    .d_shirt,.d_shoes{
+        animation: q2_alt 7s ease-in-out infinite;
+    }
+    #upper_form, #lower_form, #shoes_form, #accessory_form{
+        position: absolute;
+        width: 520px;
+        height: fit-content;
+        background-color: rgb(34, 34, 34);
+        color: #ffffff;
+        font-size: 1.4rem;
+        transform: translate(147px,-3px);
+        z-index: 99;
+        padding: 20px;
+    }
+    #lower_form{
+        transform: translate(294px,-3px);
+    }
+    #shoes_form{
+        transform: translate(441px,-3px);
+    }
+    #accessory_form{
+        transform: translate(147px,74px);
+    }
+    .upper_form_inactive, .lower_form_inactive, .shoes_form_inactive, .accessory_form_inactive{
+        opacity: 0;
+        transition: 340ms;
+        pointer-events: none;
+    }
+    .upper_form_active{
+        opacity: 1;
+        animation: uw_form 340ms ease-in-out forwards;
+        transition: 340ms;
+    }
+    .lower_form_active{
+        opacity: 1;
+        animation: lw_form 340ms ease-in-out forwards;
+        transition: 340ms;
+    }
+    .shoes_form_active{
+        opacity: 1;
+        animation: sw_form 340ms ease-in-out forwards;
+        transition: 340ms;
+    }
+    .accessory_form_active{
+        opacity: 1;
+        animation: ac_form 340ms ease-in-out forwards;
+        transition: 340ms;
+    }
+    @keyframes uw_form{
+        0%{
+            transform: translate(0px,-14px);
+        }
+        100%{
+            transform: translate(147px,-14px);
+        }
+    }
+    @keyframes lw_form{
+        0%{
+            transform: translate(147px,-14px);
+        }
+        100%{
+            transform: translate(294px,-14px);
+        }
+    }
+    @keyframes sw_form{
+        0%{
+            transform: translate(294px,-14px);
+        }
+        100%{
+            transform: translate(441px,-14px);
+        }
+    }
+    @keyframes ac_form{
+        0%{
+            transform: translate(0px,74px);
+        }
+        100%{
+            transform: translate(147px,74px);
+        }
+    }
+    #upper_form h3, #lower_form h3, #shoes_form h3, #accessory_form h3{
+        border-bottom: #52fdb9 2px solid;
+    }
+    #upper_form button, #lower_form button, #shoes_form button, #accessory_form button{
+        width: 50px;
+        height: 50px;
+        margin-top: 7px;
+        margin-right: 7px;
+        border: none;
+        cursor: pointer;
+    }
+    #color_check input{
+        width: 50px;
+        height: 50px;
+        margin-top: 7px;
+        margin-right: 3px;
+        border: none;
+        opacity: 0.1;
+        cursor: pointer;
+    }
+    #upper_type, #lower_type, #shoes_type, #accessory_type{
+        background: none;
+        background-color: #1e1e1e;
+        border: white 2px solid;
+        color: white;
+        font-family: Agency FB;
+        font-weight: 900;
+        height: 34px;
+        font-size: 1.4rem;
+    }
+    #upper_submit, #lower_submit, #shoes_submit, #accessory_submit{
+        background-color: white;
+        color: #2e2e2e;
+        border: none;
+        position: absolute;
+        transform: translate(502px,-200px);
+        height: 220px;
+        font-family: montserrat;
+        font-weight: 900;
+        font-size: 2rem;
+        border-radius: 0px 20px 20px 0px;
+    }
+    #upper_submit:hover, #lower_submit:hover, #shoes_submit:hover, #accessory_submit:hover{
+        background-color: #2e2e2e;
+        color: #52fdb9;
+        transition: 340ms;
+    }
+    #upper_submit:active, #lower_submit:active, #shoes_submit:active, #accessory_submit:active{
+        background-color: #2e2e2e;
+        color: #ffffff;
+        border: #52fdb9 2px solid;
+    }
+    #color_check{
+        position: absolute;
+        margin-left: 46px;
+        transform: translate(0px,-61px);
+    }
+    #upper_form button:active, #lower_form button:active, #shoes_form button:active, #accessory_form button:active{
+        border: #1e1e1e 2px solid;
+    }
+    #red_btn{
+        background-color: #f84242;
+    }
+    #blue_btn{
+        background-color: #4646ff;
+    }
+    #green_btn{
+        background-color: #59ff59;
+    }
+    #black_btn{
+        background-color: #1e1e1e;
+    }
+    #white_btn{
+        background-color: #dddddd;
+    }
+    #yellow_btn{
+        background-color: #ffff4f;
+    }
+    #pink_btn{
+        background-color: #ff6bff;
+    }
+    #total_price{
+        font-size: 1.4rem;
+        font-weight: 900;
+        font-family: Agency FB;
+        color: black;
+        position: absolute;
+        transform: translate(0px, -2px);
+        background-color: aquamarine;
+        width: 340px;
+        opacity: 0;
+    }
+    #cart_item_upper_img,#cart_item_lower_img{
+        width: 50px;
+        height: 50px;
+        margin-right: 10px;
+    }
+    #cart_item_asc_img,#cart_item_shoes_img{
+        width: 50px;
+        height: 34px;
+        margin-right: 10px;
+    }
+    #cart_details{
+        position: absolute;
+        z-index: 999;
+        transform: translate(-50px,-190px);
+        opacity: 0;
+    }
+    #cart_item_asc,#cart_item_upper,#cart_item_shoes,#cart_item_lower{
+        height: fit-content;
+        display: flex;
+        width: 290px;
+        align-items: center;
+        box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+        background-color: rgb(247, 247, 247);
+        border-bottom: 2px black solid;
+    }
+    #cart_item_asc_price,#cart_item_upper_price,#cart_item_shoes_price,#cart_item_lower_price{
+        font-size: 1.4rem;
+        font-weight: 900;
+        font-family: Agency FB;
+        color: rgb(0, 0, 0);
+    }
+    #add_cart_all_btn{
+        color: rgb(58, 255, 180);
+        background-color: rgb(35, 35, 35);
+        border: none;
+        width: 70px;
+        height: 175px;
+        position: absolute;
+        transform: translate(331px, -191px);
+        border-radius: 0px 20px 20px 0px;
+    }
+    #add_cart_all_btn:hover{
+        background-color: #72ffc0;
+        color: rgb(0, 0, 0);
+        transition: 340ms;
+    }
+    #add_cart_all_btn:active{
+        background-color: #72ffc0;
+        color: rgb(255, 255, 255);
+        border: #52fdb9 2px solid;
+    }
+
+    .user-menu {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .user-dropdown {
+        display: none;
+        position: absolute;
+        font-family: montserrat;
+        right: 0;
+        top: 100%;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        padding: 10px;
+        border-radius: 5px;
+        z-index: 1000;
+        min-width: 120px;
+    }
+
+    .user-menu:hover .user-dropdown {
+        display: block;
+    }
+
+    .user-dropdown span {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #000000;
+    }
+
+    .user-dropdown a {
+        display: block;
+        color: #333;
+        text-decoration: none;
+        padding: 5px 0;
+    }
+
+    .user-dropdown a:hover {
+        color: #fd9c52;
+    }

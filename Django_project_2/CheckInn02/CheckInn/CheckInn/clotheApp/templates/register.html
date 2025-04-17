@@ -1,0 +1,143 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckInn - Register</title>
+    <script src="https://kit.fontawesome.com/89a004fb1d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/auth2.css' %}">
+</head>
+<body class="body_light">
+    <video src="{% static 'images/Video_registration.mp4'%}" id="login_background" muted autoplay loop></video>
+    <div id="top">
+        <div id="prof">
+            <button id="theme-toggle">
+                <i class="fa-solid fa-moon" style="color: white;"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Create Account</h1>
+                <p>Join us and discover your perfect style</p>
+            </div>
+
+            <form method="POST" class="auth-form">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <div class="input-group">
+                        <i class="fa-solid fa-user input-icon"></i>
+                        <input type="text" name="username" placeholder="Username" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-group">
+                        <i class="fa-solid fa-envelope input-icon"></i>
+                        <input type="email" name="email" placeholder="Email" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-group">
+                        <i class="fa-solid fa-lock input-icon"></i>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <i class="fa-solid fa-eye-slash toggle-password"></i>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-group">
+                        <i class="fa-solid fa-lock input-icon"></i>
+                        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+                        <i class="fa-solid fa-eye-slash toggle-password"></i>
+                    </div>
+                </div>
+                
+                <button type="submit" class="auth-button">Sign Up</button>
+                
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="message {{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                
+                <div class="social-login">
+                    <p>Or continue with</p>
+                    <div class="social-icons">
+                        <button type="button" class="social-icon">
+                            <i class="fa-brands fa-google"></i>
+                        </button>
+                        <button type="button" class="social-icon">
+                            <i class="fa-brands fa-apple"></i>
+                        </button>
+                        <button type="button" class="social-icon">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="{% url 'login' %}">Sign In</a></p>
+                </div>
+            </form>
+        </div>
+        
+        <div class="auth-illustration">
+            <video src="{% static 'images/Video_registration.mp4'%}" class="illustration-img" muted autoplay loop></video>
+            <div class="illustration-content">
+                <h2>Find your perfect outfit today</h2>
+                <div class="illustration-controls">
+                    <button class="control-btn">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button class="control-btn">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle password visibility
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggles = document.querySelectorAll('.toggle-password');
+            
+            toggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const input = this.previousElementSibling;
+                    const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                    input.setAttribute('type', type);
+                    this.classList.toggle('fa-eye');
+                    this.classList.toggle('fa-eye-slash');
+                });
+            });
+            
+            // Theme toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            themeToggle.addEventListener('click', function() {
+                body.classList.toggle('body_light');
+                body.classList.toggle('body_dark');
+                
+                const icon = themeToggle.querySelector('i');
+                if (icon.classList.contains('fa-moon')) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

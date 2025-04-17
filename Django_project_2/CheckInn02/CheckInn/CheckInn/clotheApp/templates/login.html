@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckInn - Login</title>
+    <script src="https://kit.fontawesome.com/89a004fb1d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+<body class="body_light">
+    <video src="{% static 'images/Video_login.mp4'%}" id="login_background" muted autoplay loop></video>
+    <div id="top">
+        <div id="prof">
+            <button id="theme-toggle">
+                <i class="fa-solid fa-moon" style="color: aliceblue;"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Hello Again!</h1>
+                <p>Dive into True Fashion</p>
+            </div>
+
+            <form method="POST" class="auth-form">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <div class="input-group">
+                        <i class="fa-solid fa-envelope input-icon"></i>
+                        <input type="text" name="username" placeholder="Email" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="input-group">
+                        <i class="fa-solid fa-lock input-icon"></i>
+                        <input type="password" name="password" placeholder="Password" required>
+                        <i class="fa-solid fa-eye-slash toggle-password"></i>
+                    </div>
+                </div>
+                
+                <div class="forgot-password">
+                    <a href="#">Recovery Password</a>
+                </div>
+                
+                <button type="submit" class="auth-button">Sign In</button>
+                
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="message {{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                
+                <div class="social-login">
+                    <p>Or continue with</p>
+                    <div class="social-icons">
+                        <button type="button" class="social-icon">
+                            <i class="fa-brands fa-google"></i>
+                        </button>
+                        <button type="button" class="social-icon">
+                            <i class="fa-brands fa-apple"></i>
+                        </button>
+                        <button type="button" class="social-icon">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="{% url 'register' %}">Sign Up</a></p>
+                </div>
+            </form>
+        </div>
+        
+        <div class="auth-illustration">
+            <video src="{% static 'images/Video_login.mp4'%}" class="illustration-img" muted autoplay loop></video>
+            <div class="illustration-content">
+                <h2>Finally, all your styles in one place</h2>
+                <div class="illustration-controls">
+                    <button class="control-btn">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <button class="control-btn">
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle password visibility
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.querySelector('.toggle-password');
+            const passwordInput = document.querySelector('input[name="password"]');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.classList.toggle('fa-eye');
+                this.classList.toggle('fa-eye-slash');
+            });
+            
+            // Theme toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            themeToggle.addEventListener('click', function() {
+                body.classList.toggle('body_light');
+                body.classList.toggle('body_dark');
+                
+                const icon = themeToggle.querySelector('i');
+                if (icon.classList.contains('fa-moon')) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                } else {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

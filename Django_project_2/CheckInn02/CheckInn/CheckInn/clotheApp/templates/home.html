@@ -1,0 +1,296 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckInn</title>
+    <script src="https://kit.fontawesome.com/89a004fb1d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+
+<!-- background-color: #fd9c52;
+color: #fe760e; 
+2:20 added thinking gif
+2:52 added slider
+-->
+<body class="body_light">
+    <div id="top">
+    <div id="logo">
+        <img src="{% static 'images/checkinn_logo.png' %}" alt="" id="logo_img">
+    </div>
+    <div id="prof">
+        <button id="theme-toggle">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+        <div id="cart">
+            <i class="fa-solid fa-cart-shopping fa-xl cart"></i>
+        </div>
+        <div id="profile">
+            {% if user.is_authenticated %}
+                <div class="user-menu">
+                    <i class="fa-solid fa-id-card fa-xl profile"></i>
+                    <div class="user-dropdown">
+                        <span>{{ user.username }}</span>
+                        <a href="{% url 'logout' %}">Logout</a>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}"><i class="fa-solid fa-id-card fa-xl profile"></i></a>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+    <div class="bgl_txt">
+        <p> <span class="bgtxt1">Explore, <br></span>
+        <span class="bgtxt2">The Threads</span></p>
+    </div>
+    <div id="main">
+        <span class="choose_l">Choose Your Style</span>
+        <div id="choose">
+            <div id="price_range">
+                <span id="price_txt">Price Range: </span><br>
+                <input type="range" min="1000" max="10000" value="5000" class="price-slider">
+                <div class="price-labels">
+                    <span>$1000</span>
+                    <span>$10000</span>
+                </div>
+                <div class="price-value">$5000</div>
+            </div>
+           <div id="style1">
+            <div id="upper_form" class="upper_form_inactive">
+                <h3>UpperWear</h3>
+                Type: &nbsp;&nbsp;
+                <select name="upper_type" id="upper_type">
+                    <option value="T-Shirts">T-Shirts</option>
+                    <option value="Shirts">Shirts</option>
+                    <option value="Hoodies">Hoodies</option>
+                    <option value="Sweatshirts">Sweatshirts</option>
+                    <option value="Jackets">Jackets</option>
+                </select>
+                &nbsp;&nbsp;
+                Size: &nbsp;&nbsp;
+                <label for=""></label>
+                <input type="checkbox" name="size_upper_S" id="size_S" value="S">S &nbsp;&nbsp;
+                <input type="checkbox" name="size_upper_M" id="size_M" value="M">M &nbsp;&nbsp;
+                <input type="checkbox" name="size_upper_L" id="size_L" value="L">L &nbsp;&nbsp;
+                <input type="checkbox" name="size_upper_XL" id="size_XL" value="XL">XL &nbsp;&nbsp;
+                <input type="checkbox" name="size_upper_XXL" id="size_XXL" value="XXL">XXL &nbsp;&nbsp;
+                <br>
+                Color:
+                <button id="red_btn"></button>
+                <button id="blue_btn"></button>
+                <button id="green_btn"></button>
+                <button id="black_btn"></button>
+                <button id="white_btn"></button>
+                <button id="yellow_btn"></button>
+                <button id="pink_btn"></button><br>
+                <div id="color_check">
+                <input type="checkbox" name="colour_upper" id="" value="red">
+                <input type="checkbox" name="colour_upper" id="" value="blue">
+                <input type="checkbox" name="colour_upper" id="" value="green">
+                <input type="checkbox" name="colour_upper" id="" value="black">
+                <input type="checkbox" name="colour_upper" id=""  value="white">
+                <input type="checkbox" name="colour_upper" id="" value="yellow">
+                <input type="checkbox" name="colour_upper" id="" value="pink">
+                </div>
+                <input type="Submit" value=" ➤" id="upper_submit">
+            </div>
+            
+            <div id="lower_form" class="lower_form_inactive">
+                <h3>LowerWear</h3>
+                Type: &nbsp;&nbsp;
+                <select name="lower_type" id="lower_type">
+                    <option value="Jeans">Jeans</option>
+                    <option value="Trousers">Trousers</option>
+                    <option value="Joggers">Joggers</option>
+                    <option value="Shorts">Shorts</option>
+                    <option value="Capris">Capris</option>
+                </select>
+                &nbsp;&nbsp;
+                Size: &nbsp;&nbsp;
+                <label for=""></label>
+                <input type="checkbox" name="size_lower_S" id="size_S" value="S">S &nbsp;&nbsp;
+                <input type="checkbox" name="size_lower_M" id="size_M" value="M">M &nbsp;&nbsp;
+                <input type="checkbox" name="size_lower_L" id="size_L" value="L">L &nbsp;&nbsp;
+                <input type="checkbox" name="size_lower_XL" id="size_XL" value="XL">XL &nbsp;&nbsp;
+                <input type="checkbox" name="size_lower_XXL" id="size_XXL" value="XXL">XXL &nbsp;&nbsp;
+                <br>
+                Color:
+                <button id="red_btn"></button>
+                <button id="blue_btn"></button>
+                <button id="green_btn"></button>
+                <button id="black_btn"></button>
+                <button id="white_btn"></button>
+                <button id="yellow_btn"></button>
+                <button id="pink_btn"></button><br>
+                <div id="color_check">
+                <input type="checkbox" name="colour_lower" id="" value="red">
+                <input type="checkbox" name="colour_lower" id="" value="blue">
+                <input type="checkbox" name="colour_lower" id="" value="green">
+                <input type="checkbox" name="colour_lower" id="" value="black">
+                <input type="checkbox" name="colour_lower" id=""  value="white">
+                <input type="checkbox" name="colour_lower" id="" value="yellow">
+                <input type="checkbox" name="colour_lower" id="" value="pink">
+                </div>
+                <input type="Submit" value=" ➤" id="lower_submit">
+            </div>
+            
+            <div id="shoes_form" class="shoes_form_inactive">
+                <h3>Shoes</h3>
+                Type: &nbsp;&nbsp;
+                <select name="shoes_type" id="shoes_type">
+                    <option value="Casual">Casual</option>
+                    <option value="Sports">Sports</option>
+                    <option value="Formal">Formal</option>
+                    <option value="Boots">Boots</option>
+                    <option value="Sandals">Sandals</option>
+                </select>
+                &nbsp;&nbsp;
+                Size: &nbsp;&nbsp;
+                <label for=""></label>
+                <input type="checkbox" name="size_shoes_7" id="size_7" value="7">7 &nbsp;&nbsp;
+                <input type="checkbox" name="size_shoes_8" id="size_8" value="8">8 &nbsp;&nbsp;
+                <input type="checkbox" name="size_shoes_9" id="size_9" value="9">9 &nbsp;&nbsp;
+                <input type="checkbox" name="size_shoes_10" id="size_10" value="10">10 &nbsp;&nbsp;
+                <input type="checkbox" name="size_shoes_11" id="size_11" value="11">11 &nbsp;&nbsp;
+                <br>
+                Color:
+                <button id="red_btn"></button>
+                <button id="blue_btn"></button>
+                <button id="green_btn"></button>
+                <button id="black_btn"></button>
+                <button id="white_btn"></button>
+                <button id="yellow_btn"></button>
+                <button id="pink_btn"></button><br>
+                <div id="color_check">
+                <input type="checkbox" name="colour_shoes" id="" value="red">
+                <input type="checkbox" name="colour_shoes" id="" value="blue">
+                <input type="checkbox" name="colour_shoes" id="" value="green">
+                <input type="checkbox" name="colour_shoes" id="" value="black">
+                <input type="checkbox" name="colour_shoes" id=""  value="white">
+                <input type="checkbox" name="colour_shoes" id="" value="yellow">
+                <input type="checkbox" name="colour_shoes" id="" value="pink">
+                </div>
+                <input type="Submit" value=" ➤" id="shoes_submit">
+            </div>
+            
+            <div id="accessory_form" class="accessory_form_inactive">
+                <h3>Accessories</h3>
+                Type: &nbsp;&nbsp;
+                <select name="accessory_type" id="accessory_type">
+                    <option value="Glasses">Glasses</option>
+                    <option value="Hats">Hats</option>
+                    <option value="Watches">Watches</option>
+                    <option value="Belts">Belts</option>
+                    <option value="Jewelry">Jewelry</option>
+                </select>
+                &nbsp;&nbsp;
+                Style: &nbsp;&nbsp;
+                <label for=""></label>
+                <input type="checkbox" name="style_accessory_casual" id="style_casual" value="Casual">Casual &nbsp;&nbsp;
+                <input type="checkbox" name="style_accessory_formal" id="style_formal" value="Formal">Formal &nbsp;&nbsp;
+                <input type="checkbox" name="style_accessory_sports" id="style_sports" value="Sports">Sports &nbsp;&nbsp;
+                <br>
+                Color:
+                <button id="red_btn"></button>
+                <button id="blue_btn"></button>
+                <button id="green_btn"></button>
+                <button id="black_btn"></button>
+                <button id="white_btn"></button>
+                <button id="yellow_btn"></button>
+                <button id="pink_btn"></button><br>
+                <div id="color_check">
+                <input type="checkbox" name="colour_accessory" id="" value="red">
+                <input type="checkbox" name="colour_accessory" id="" value="blue">
+                <input type="checkbox" name="colour_accessory" id="" value="green">
+                <input type="checkbox" name="colour_accessory" id="" value="black">
+                <input type="checkbox" name="colour_accessory" id=""  value="white">
+                <input type="checkbox" name="colour_accessory" id="" value="yellow">
+                <input type="checkbox" name="colour_accessory" id="" value="pink">
+                </div>
+                <input type="Submit" value=" ➤" id="accessory_submit">
+            </div>
+            </form>
+            <div class="s1 s1_1">
+                <i class="fa-solid fa-shirt fa-2xl shirt_img"></i> <br>
+                <span class="stxt stxt1">UpperWear</span>
+            </div>
+            <div class="s1 s1_2">
+                <img src="{% static 'images/pants.png' %}" alt="" id="pants_img"><br>
+                <img src="{% static 'images/pants_hover.png' %}" alt="" id="pants_hover_img">
+                <span class="stxt stxt2">LowerWear</span>
+            </div>
+            <div class="s1 s1_3">
+                <img src="{% static 'images/shoes.png' %}" alt="" id="shoes_img"> <br>
+                <img src="{% static 'images/shoes_hover.png' %}" alt="" id="shoes_hover_img">
+                <span class="stxt stxt3">Shoes</span>
+            </div>
+           </div>
+           <div id="style2">
+            <div class="s2 s2_1">
+            <i class="fa-solid fa-glasses fa-2xl glasses_img"></i><br>
+            <span class="stxt stxt4">Asscessories</span>
+            </div>
+            <div class="s2 s2_2">
+                <button class="gen_btn">Generate</button>
+            </div>
+           </div>
+        </div>
+        <div id="display">
+            <img src="{% static 'images/light.png'%}" alt="" id="display_light">
+            <img src="{% static 'images/light_bg.png'%}" alt="" id="display_bg">
+            <div id="div" class="d_asc">
+                <img src="" alt="" class="cap_img"  style="height: 100px; width: 200px;">
+            </div>
+            <div id="div" class="d_shirt">
+                <img src="../" alt="" class="upper_img" style="height: 200px; width: 200px;">
+            </div>
+            <div id="div" class="d_pants">
+                <img src="{% static 'images/pants_d.png'%}" alt="" class="pants_img" style="height: 200px; width: 200px;">
+            </div>
+            <div id="div" class="d_shoes">
+                <img src="{% static 'images/shoes_d.png'%}" alt="" class="shoes_img"  style="height: 100px; width: 200px;">
+            </div>
+        </div>
+        <div id="current">
+            <img src="{% static 'images/ZdPA.gif'%}" alt="" class="mascot_gif">
+            <img src="{% static 'images/mascot.png'%}" alt="" class="mascot_main">
+            <img src="{% static 'images/mascot_thinking.png'%}" alt="" class="mascot_think">
+            <div id="cart_details">
+                <ul>
+                <li><div id="cart_item_asc">
+                    <img src="" alt="" id="cart_item_asc_img"> <span id="cart_item_asc_price"></span> 
+                </div></li>
+                <li><div id="cart_item_upper">
+                    <img src="" alt="" id="cart_item_upper_img"> <span id="cart_item_upper_price"></span>
+                </div></li>
+            <li><div id="cart_item_lower">
+                <img src="" alt="" id="cart_item_lower_img"> <span id="cart_item_lower_price"></span>
+            </div></li>
+            <li><div id="cart_item_shoes">
+                <img src="" alt="" id="cart_item_shoes_img"> <span id="cart_item_shoes_price"></span>
+            </div></li>
+                </ul>
+                <div id="add_to_cart_all">
+                    <form action="{% url 'add_outfit_to_cart' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" id="hidden_upper_id" name="upper_id" value="">
+                        <input type="hidden" id="hidden_lower_id" name="lower_id" value="">
+                        <input type="hidden" id="hidden_shoes_id" name="shoes_id" value="">
+                        <input type="hidden" id="hidden_accessory_id" name="accessory_id" value="">
+                        <button type="submit" id="add_cart_all_btn">
+                            <i class="fa-solid fa-cart-plus fa-2xl"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div id="total_price">
+                <span id="total_txt">Total Price:</span>
+                <span id="total_value"></span>
+            </div>
+        </div>
+    </div>
+<script src="{% static 'js/home.js' %}"></script>    
+</body>
+</html>

@@ -1,0 +1,284 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - CheckInn</title>
+    <script src="https://kit.fontawesome.com/89a004fb1d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <style>
+        body{
+            background-color: #292929;
+            font-family: Agency FB;
+            overflow: scroll;
+        }
+        .cart-container {
+            width: 80%;
+            margin: 30px auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .cart-header {
+            padding: 20px;
+            background-color: aquamarine;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-header h1 {
+            color: #292929;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 20px ;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+        
+        .cart-item:hover{
+            scale: 1.02;
+            background-color: #f4f4f4;
+            transform: translate(0, -2px);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            transition: 340ms;
+        }
+        .item-details {
+            flex-grow: 1;
+        }
+        
+        .item-details h3 {
+            margin: 0;
+            color: #333;
+        }
+        
+        .item-details p {
+            margin: 5px 0;
+            color: #666;
+        }
+        
+        .item-price {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #000000;
+            margin-right: 15px;
+        }
+        
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        
+        .quantity-btn {
+            background: #21f5ae;
+            font-weight: 900;
+            height: 25px;
+            width: 25px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            color: #000000;
+        }
+        
+        .quantity-value {
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        
+        .remove-btn {
+            background: #ff6b6b;
+            font-family: Agency FB;
+            font-weight: 900;
+            scale: 1.4;
+            color: rgb(34, 34, 34);
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .cart-summary {
+            padding: 20px;
+            margin-top: 20px;
+            text-align: right;
+        }
+        
+        .cart-total {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #000000;
+        }
+        
+        .checkout-btn {
+            background-color: #000000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .continue-shopping {
+            display: inline-block;
+            margin-top: 20px;
+            color: #000000;
+            text-decoration: none;
+            padding: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 50px 0;
+        }
+        
+        .messages {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        
+        .messages li {
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+        
+        .messages .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .messages .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .messages .warning {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+    </style>
+</head>
+<body class="body_light">
+    <div id="top">
+        <div id="logo">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'images/checkinn_logo.png' %}" alt="CheckInn Logo">
+            </a>
+        </div>
+        <div id="prof">
+            <div id="profile">
+                <i class="fa-solid fa-id-card fa-xl profile"></i>
+            </div>
+        </div>
+    </div>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="cart-container">
+        <div class="cart-header">
+            <h1>Your Shopping Cart</h1>
+            <form method="post" action="{% url 'clear_cart' %}">
+                {% csrf_token %}
+                <button type="submit" class="remove-btn">Clear Cart</button>
+            </form>
+        </div>
+
+        {% if cart_items %}
+            {% for item in cart_items %}
+                <div class="cart-item">
+                    <img src="{{ item.product.image.url }}" alt="{{ item.product.type }}">
+                    <div class="item-details">
+                        <h3>{{ item.product.color|title }} {{ item.product.type }}</h3>
+                        <p>Size: {{ item.product.size }}</p>
+                        <p>Category: {{ item.product.get_category_display }}</p>
+                        {% if item.product.style %}
+                            <p>Style: {{ item.product.style }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="item-quantity">
+                        <form method="post" action="{% url 'remove_from_cart' item.product.id %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="quantity-btn">-</button>
+                        </form>
+                        <span class="quantity-value">{{ item.quantity }}</span>
+                        <form method="post" action="{% url 'add_to_cart_item' item.product.id %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="quantity-btn">+</button>
+                        </form>
+                    </div>
+                    <div class="item-price">${{ item.product.price }}</div>
+                    <form method="post" action="{% url 'remove_from_cart' item.product.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="delete" value="true">
+                        <button type="submit" class="remove-btn">Remove</button>
+                    </form>
+                </div>
+            {% endfor %}
+
+            <div class="cart-summary">
+                <div class="cart-total">Total: ${{ total_price }}</div>
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="checkout-btn">Proceed to Checkout</button>
+                </form>
+            </div>
+        {% else %}
+            <div class="empty-cart">
+                <i class="fa-solid fa-cart-shopping fa-4x" style="color: #ccc;"></i>
+                <h2>Your cart is empty</h2>
+                <p>Looks like you haven't added any items to your cart yet.</p>
+            </div>
+        {% endif %}
+
+        <a href="{% url 'home' %}" class="continue-shopping">
+            <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+        </a>
+    </div>
+
+    <script>
+    
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('body_cart_dark');
+            document.body.classList.toggle('body_cart_light');
+            
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('fa-moon')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+    </script>
+</body>
+</html>
